@@ -12,6 +12,8 @@ docker
 chardet
 gcsfs
 colorama
+xinference
+arxiv
 git+https://github.com/streamlit/files-connection
 # Development dependencies
 #black==19.10b0
