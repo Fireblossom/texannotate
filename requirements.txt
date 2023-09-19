@@ -14,6 +14,7 @@ gcsfs
 colorama
 xinference
 arxiv
+openai
 git+https://github.com/streamlit/files-connection
 # Development dependencies
 #black==19.10b0
