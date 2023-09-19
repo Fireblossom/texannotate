@@ -35,4 +35,4 @@ outputs_kappa/
 *.txt
 solved/
 .vscode/
-.streamlit
+.streamlit/secrets.toml
