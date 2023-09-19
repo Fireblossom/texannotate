@@ -15,6 +15,7 @@ colorama
 xinference
 arxiv
 openai
+llama_index
 git+https://github.com/streamlit/files-connection
 # Development dependencies
 #black==19.10b0
