@@ -27,6 +27,7 @@ from texannotate.color_annotation import ColorAnnotation
 from texcompile.client import compile_pdf_return_bytes
 from utils.utils import (find_latex_file, postprocess_latex, preprocess_latex,
                          tup2str)
+import base64
 
 st.set_page_config(page_title='Chat with arXiv paper without PDF noise, powered by LaTeX Rainbow.', layout="wide")
 texcompile_host = st.secrets.texcompile_host
@@ -38,6 +39,7 @@ def main():
 
     :return: None.
     """
+    set_background('utils/bg.png')
     st.title("Chat with arXiv paper, without PDF noise")
     st.sidebar.markdown('# Github link: [LaTeX Rainbow](https://github.com/InsightsNet/texannotate)')
     st.sidebar.markdown("""<small>It's always good practice to verify that a website is safe before giving it your API key. 
@@ -238,6 +240,24 @@ def set_openai_llm():
     service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="You are an expert on the paper and your job is to answer technical questions. Keep your answers precise and based on facts – do not hallucinate features."))
     set_global_service_context(service_context)
 
+
+def get_base64(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+
+def set_background(png_file):
+    bin_str = get_base64(png_file)
+    page_bg_img = '''
+    <style>
+    .stApp {
+    background-image: url("data:image/png;base64,%s");
+    background-size: cover;
+    }
+    </style>
+    ''' % bin_str
+    st.markdown(page_bg_img, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     main()
