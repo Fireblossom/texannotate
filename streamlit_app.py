@@ -47,6 +47,8 @@ def main():
     col1, col2 = st.columns([1, 0.8], gap='medium')
     with col2:
         with st.form("my_form"):
+            st.write('Enter the API key and an arXiv ID here and the app will automatically label and extract the fine-grained paper content.')
+            st.write('After that, an LLM dialog element will appear for chatting with paper.')
             api_key = st.text_input("Enter OpenAI API key here.", type='password')
             arxiv_id = st.text_input("Please enter a arXiv paper id:", value='1601.00978')
             submitted = st.form_submit_button("Submit and process arXiv paper (click once and wait)")
